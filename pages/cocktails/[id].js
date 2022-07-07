@@ -21,12 +21,15 @@ export default function Cocktail({ cocktail }) {
   const ingredients = [];
   for (let i = 1; i <= 15; i++)
     if (cocktail[`strIngredient${i}`])
-      ingredients.push(cocktail[`strIngredient${i}`]);
+      ingredients.push({
+        name: cocktail[`strIngredient${i}`],
+        measure: cocktail[`strMeasure${i}`],
+      });
 
   return (
     <>
       <BaseHead title={cocktail.strDrink} />
-      <section className="bg-slate-900 text-white">
+      <section>
         <div className="container mx-auto px-5 py-20 flex items-start flex-col lg:flex-row gap-16">
           <div className="lg:w-1/2 flex w-full justify-center lg:justify-end">
             <img
@@ -39,25 +42,31 @@ export default function Cocktail({ cocktail }) {
             <h2 className="font-bold text-5xl">{cocktail.strDrink}</h2>
             <div>
               <span className="block">
-                <span className="font-bold">Category: </span>{" "}
+                <span className="font-bold">Category: </span>
                 {cocktail.strCategory}
               </span>
               <span className="block">
                 <span className="font-bold">Glass: </span> {cocktail.strGlass}
               </span>
             </div>
-            <p>{cocktail.strInstructions}</p>
             <div>
-              <h3>Ingredients</h3>
+              <h3 className="font-bold">Instructions</h3>
+              <p>{cocktail.strInstructions}</p>
+            </div>
+            <div>
+              <h3 className="font-bold">Ingredients</h3>
               <div className="flex flex-wrap gap-4 mt-2">
                 {ingredients.map((ing) => (
-                  <Link key={ing} href={`/ingredients/${ing}`}>
-                    <a className="py-1 px-2 bg-slate-800 rounded-sm rounded flex flex-col items-center gap-2">
+                  <Link key={ing} href={`/ingredients/${ing.name}`}>
+                    <a className="p-3 bg-neutral-800 rounded-sm rounded flex flex-col items-center">
                       <img
-                        src={`https://www.thecocktaildb.com/images/ingredients/${ing}-small.png`}
-                        alt={ing}
+                        src={`https://www.thecocktaildb.com/images/ingredients/${ing.name}-small.png`}
+                        alt={ing.name}
                       />
-                      <span className="text-center">{ing}</span>
+                      <span className="mt-2 text-center">{ing.name}</span>
+                      <span className="text-center text-xs italic">
+                        {ing.measure}
+                      </span>
                     </a>
                   </Link>
                 ))}

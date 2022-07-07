@@ -6,7 +6,7 @@ export default function Document() {
   return (
     <Html className="scroll-smooth">
       <Head />
-      <body className="overflow-x-hidden bg-slate-900 text-white min-h-screen">
+      <body className="overflow-x-hidden bg-neutral-900 text-white min-h-screen">
         <Header />
         <Main className="flex-1" />
         <Footer />

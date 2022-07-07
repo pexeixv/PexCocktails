@@ -1,5 +1,3 @@
-import { useRouter } from "next/router";
-
 export default function SearchForm() {
   return (
     <form
@@ -10,14 +8,15 @@ export default function SearchForm() {
       <input
         type="text"
         name="query"
-        className="text-black rounded p-2 w-9/12 max-w-xl"
+        className="rounded p-2 w-9/12 max-w-xl bg-neutral-800"
         placeholder="Tea"
+        required="required"
       />
       <label htmlFor="query"></label>
       <input
         type="submit"
         value="Search"
-        className="bg-white text-black px-4 py-2 rounded font-bold"
+        className="bg-neutral-700 px-4 py-2 rounded font-bold"
       />
     </form>
   );
