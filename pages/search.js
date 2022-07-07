@@ -1,5 +1,5 @@
 import BaseHead from "../components/BaseHead";
-import Card from "../components/Card";
+import CocktailCard from "../components/CocktailCard";
 import Header from "../components/Header";
 import SearchForm from "../components/SearchForm";
 
@@ -36,7 +36,7 @@ export default function Search({ response, query }) {
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 mt-16 mb-24 gap-12">
             {cocktails &&
               cocktails.map((cocktail) => (
-                <Card key={cocktail.idDrink} cocktail={cocktail} />
+                <CocktailCard key={cocktail.idDrink} cocktail={cocktail} />
               ))}
           </div>
 
