@@ -22,7 +22,7 @@ export default function Search({ response, query }) {
   return (
     <>
       <BaseHead />
-      <section className="bg-slate-900 text-white">
+      <section className="bg-neutral-900 text-white">
         <div className="container mx-auto px-5 py-20">
           <h2 className="text-3xl lg:text-4xl text-center">
             <span className="font-bold">Search query: </span>

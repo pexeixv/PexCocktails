@@ -29,18 +29,11 @@ export async function getServerSideProps(context) {
 }
 
 const Home = ({ cocktails, ingredients }) => {
-  console.log(
-    "🚀 ~ file: index.js ~ line 32 ~ Home ~ ingredients",
-    ingredients
-  );
   return (
     <>
       <BaseHead />
-
       <Row title="Random Cocktails" array={cocktails} card={"cocktail"} />
-
       <Row title="Random Ingredients" array={ingredients} card={"ingredient"} />
-
       <SearchCocktails />
     </>
   );
