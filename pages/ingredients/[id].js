@@ -3,12 +3,13 @@ import CocktailCard from "../../components/CocktailCard";
 import SearchCocktails from "../../components/SearchCocktails";
 
 const shortenText = (text, length) => {
-  if (text.length > length) return text.slice(0, length) + "...";
+  if (text?.length > length) return text.slice(0, length) + "...";
   return text;
 };
 
 export async function getServerSideProps({ params }) {
-  const ingredient = params.id;
+  const query = params.id;
+  const ingredient = query.replace("-", " ");
   const ingredientUrl = `https://www.thecocktaildb.com/images/ingredients/${ingredient}-medium.png`;
 
   const response = await fetch(
@@ -41,7 +42,11 @@ export default function Cocktail({
 }) {
   return (
     <>
-      <BaseHead title={ingredient} />
+      <BaseHead
+        title={ingredient}
+        description={shortenText(ingredientData.strDescription, 100)}
+        image={ingredientUrl}
+      />
       <section>
         <div className="container mx-auto px-5 py-20 flex items-start flex-col lg:flex-row gap-16">
           <div className="lg:w-1/2 flex w-full justify-center lg:justify-end">

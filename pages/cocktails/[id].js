@@ -1,10 +1,11 @@
 import BaseHead from "../../components/BaseHead";
-import Header from "../../components/Header";
 import Link from "next/link";
 import SearchCocktails from "../../components/SearchCocktails";
 
 export async function getServerSideProps({ params }) {
-  const cocktailId = params.id;
+  const query = params.id;
+  const queryString = query.split("-");
+  const cocktailId = queryString[queryString.length - 1];
   const cocktail = await fetch(
     `https://www.thecocktaildb.com/api/json/v1/1/lookup.php?i=${cocktailId}`
   ).then((r) => r.json());
@@ -57,7 +58,7 @@ export default function Cocktail({ cocktail }) {
               <h3 className="font-bold">Ingredients</h3>
               <div className="flex flex-wrap gap-4 mt-2">
                 {ingredients.map((ing) => (
-                  <Link key={ing} href={`/ingredients/${ing.name}`}>
+                  <Link key={ing.name} href={`/ingredients/${ing.name}`}>
                     <a className="p-3 bg-neutral-800 rounded-sm rounded flex flex-col items-center">
                       <img
                         src={`https://www.thecocktaildb.com/images/ingredients/${ing.name}-small.png`}

@@ -1,8 +1,15 @@
 import Link from "next/link";
 
+const slugify = (str) =>
+  str
+    .trim()
+    .replace(/[^\w\s-]/g, "")
+    .replace(/[\s_-]+/g, "-")
+    .replace(/^-+|-+$/g, "");
+
 const IngredientCard = ({ ingredient }) => {
   return (
-    <Link href={`/ingredients/${ingredient}`}>
+    <Link href={`/ingredients/${slugify(ingredient)}`}>
       <a className="rounded-md overflow-hidden bg-neutral-800 group">
         <div className="relative p-4">
           <img
