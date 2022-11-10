@@ -2,6 +2,11 @@ import BaseHead from "../../components/BaseHead";
 import Link from "next/link";
 import SearchCocktails from "../../components/SearchCocktails";
 
+const shortenText = (text, length) => {
+  if (text?.length > length) return text.slice(0, length) + "...";
+  return text;
+};
+
 export async function getServerSideProps({ params }) {
   const query = params.id;
   const queryString = query.split("-");
@@ -29,7 +34,10 @@ export default function Cocktail({ cocktail }) {
 
   return (
     <>
-      <BaseHead title={cocktail.strDrink} />
+      <BaseHead
+        title={cocktail.strDrink}
+        description={shortenText(cocktail.strInstructions, 100)}
+      />
       <section>
         <div className="container mx-auto px-5 py-20 flex items-start flex-col lg:flex-row gap-16">
           <div className="lg:w-1/2 flex w-full justify-center lg:justify-end">
@@ -76,6 +84,20 @@ export default function Cocktail({ cocktail }) {
           </div>
         </div>
       </section>
+      <script
+        async
+        src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=ca-pub-2535018939190913"
+        crossOrigin="anonymous"
+      ></script>
+      <ins
+        className="adsbygoogle"
+        style={{ display: "block" }}
+        data-ad-client="ca-pub-2535018939190913"
+        data-ad-slot="5458830992"
+        data-ad-format="auto"
+        data-full-width-responsive="true"
+      ></ins>
+      <script>(adsbygoogle = window.adsbygoogle || []).push({});</script>
       <SearchCocktails />
     </>
   );
